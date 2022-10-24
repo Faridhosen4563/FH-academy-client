@@ -4,45 +4,21 @@ import "./Errorpage.css";
 
 const Errorpage = () => {
   return (
-    <div>
-      <a href="https://codepen.io/uiswarup/full/yLzypyY" target="_blank">
-        <header class="top-header"></header>
+    <main class="h-screen w-full flex flex-col justify-center items-center bg-[#1A2238]">
+      <h1 class="text-9xl font-extrabold text-white tracking-widest">404</h1>
+      <div class="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
+        Page Not Found
+      </div>
+      <button class="mt-5">
+        <Link class="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring">
+          <span class="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
-        <div>
-          <div class="starsec"></div>
-          <div class="starthird"></div>
-          <div class="starfourth"></div>
-          <div class="starfifth"></div>
-        </div>
-
-        <div class="lamp__wrap">
-          <div class="lamp">
-            <div class="cable"></div>
-            <div class="cover"></div>
-            <div class="in-cover">
-              <div class="bulb"></div>
-            </div>
-            <div class="light"></div>
-          </div>
-        </div>
-
-        <section class="error">
-          <div class="error__content">
-            <div class="error__message message">
-              <h1 class="message__title">Page Not Found</h1>
-              <p class="message__text">
-                We're sorry, the page you were looking for isn't found here. The
-                link you followed may either be broken or no longer exists.
-                Please try again, or take a look at our.
-              </p>
-            </div>
-            <div class="error__nav e-nav">
-              <Link to="/" target="_blanck" class="e-nav__link"></Link>
-            </div>
-          </div>
-        </section>
-      </a>
-    </div>
+          <span class="relative block px-8 py-3 bg-[#1A2238] border border-current">
+            <Link to="/">Go Home</Link>
+          </span>
+        </Link>
+      </button>
+    </main>
   );
 };
 

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 
 const NavBar = () => {
+  const [theme, setTheme] = useState(true);
   return (
     <div className="navbar bg-slate-500 md:px-20">
       <div className="navbar-start">
@@ -59,6 +60,23 @@ const NavBar = () => {
           </li>
           <li>
             <Link>Blog</Link>
+          </li>
+          <li>
+            {theme ? (
+              <button
+                onClick={() => setTheme(!theme)}
+                className="btn btn-active btn-ghost"
+              >
+                White
+              </button>
+            ) : (
+              <button
+                onClick={() => setTheme(!theme)}
+                className="btn btn-active"
+              >
+                Dark
+              </button>
+            )}
           </li>
         </ul>
       </div>
