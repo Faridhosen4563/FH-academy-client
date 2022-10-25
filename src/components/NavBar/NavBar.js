@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { FaUser } from "react-icons/fa";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const NavBar = () => {
   const [theme, setTheme] = useState(true);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="navbar bg-slate-500 md:px-20">
       <div className="navbar-start">
@@ -30,10 +37,10 @@ const NavBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link>Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link>Course</Link>
+              <Link to="/courses">Courses</Link>
             </li>
             <li>
               <Link>FAQ</Link>
@@ -54,7 +61,7 @@ const NavBar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link>Course</Link>
+            <Link to="/courses">Courses</Link>
           </li>
           <li>
             <Link>FAQ</Link>
@@ -82,9 +89,22 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="text-white mr-2" to="/login">
-          Login
-        </Link>
+        {user?.email ? (
+          <button
+            onClick={handleLogOut}
+            className="text-lg font-medium text-red-400 mr-2"
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link to="/login">
+              <button className=" text-lg font-medium text-green-400 mr-2">
+                Login
+              </button>
+            </Link>
+          </>
+        )}
         <FaUser></FaUser>
       </div>
     </div>
