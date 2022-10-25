@@ -6,12 +6,17 @@ import facbookLogo from "../../images/facebook.svg";
 import { FaUser } from "react-icons/fa";
 import { HiPhotograph } from "react-icons/hi";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import {
+  FacebookAuthProvider,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const Signup = () => {
   const { providerLogIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
 
   const handleGoogleSignIn = () => {
     providerLogIn(googleProvider)
@@ -26,6 +31,17 @@ const Signup = () => {
 
   const handleGitHubSignIn = () => {
     providerLogIn(gitHubProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleFacebookSignIn = () => {
+    providerLogIn(facebookProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -162,7 +178,10 @@ const Signup = () => {
             <img src={githubLogo} className="w-6 h-6 inline mr-2" alt="" />
             <span>Signup with GitHub</span>
           </button>
-          <button class="block w-full btn btn-outline btn-primary mt-4 py-2 rounded-2xl text-white font-semibold mb-2">
+          <button
+            onClick={handleFacebookSignIn}
+            class="block w-full btn btn-outline btn-primary mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+          >
             <img src={facbookLogo} className="w-6 h-6 inline mr-2" alt="" />
             <span>Signup with Facebook</span>
           </button>
