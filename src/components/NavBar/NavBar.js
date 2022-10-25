@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
+import { FaUser } from "react-icons/fa";
 
 const NavBar = () => {
   const [theme, setTheme] = useState(true);
@@ -81,7 +82,10 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn">Login</Link>
+        <Link className="text-white mr-2" to="/login">
+          Login
+        </Link>
+        <FaUser></FaUser>
       </div>
     </div>
   );
