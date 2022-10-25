@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import googleLogo from "../../images/google .svg";
 import githubLogo from "../../images/github.svg";
@@ -13,7 +13,9 @@ import {
 } from "firebase/auth";
 
 const Signup = () => {
-  const { providerLogIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  const { providerLogIn, createUser } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
@@ -23,8 +25,10 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
       })
       .catch((error) => {
+        setError(error.message);
         console.error(error);
       });
   };
@@ -34,8 +38,10 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
       })
       .catch((error) => {
+        setError(error.message);
         console.error(error);
       });
   };
@@ -45,8 +51,36 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
       })
       .catch((error) => {
+        setError(error.message);
+        console.error(error);
+      });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoUrl = form.photoUrl.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirm = form.confirm.value;
+    console.log(name, photoUrl, email, password, confirm);
+    if (password !== confirm) {
+      setError("Password does not match");
+      return;
+    }
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
         console.error(error);
       });
   };
@@ -55,7 +89,7 @@ const Signup = () => {
     <div>
       <div class="h-screen  flex-col justify-center items-center">
         <div class="flex  mt-20 justify-center items-center bg-white">
-          <form class="bg-white">
+          <form onSubmit={handleSubmit} class="bg-white">
             <h1 class="text-gray-800 font-bold text-2xl mb-1 text-center">
               Please Sign Up!!!
             </h1>
@@ -70,6 +104,7 @@ const Signup = () => {
                 name="name"
                 id=""
                 placeholder="Username"
+                required
               />
             </div>
             <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
@@ -103,6 +138,7 @@ const Signup = () => {
                 name="email"
                 id=""
                 placeholder="Email Address"
+                required
               />
             </div>
             <div class="flex items-center mb-2 border-2 py-2 px-3 rounded-2xl">
@@ -124,6 +160,7 @@ const Signup = () => {
                 name="password"
                 id=""
                 placeholder="Password"
+                required
               />
             </div>
             <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
@@ -145,8 +182,10 @@ const Signup = () => {
                 name="confirm"
                 id=""
                 placeholder="Confirm Password"
+                required
               />
             </div>
+            <span class="text-sm ml-2 text-red-500">{error}</span>
 
             <button
               type="submit"
