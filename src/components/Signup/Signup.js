@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import googleLogo from "../../images/google .svg";
 import githubLogo from "../../images/github.svg";
 import facbookLogo from "../../images/facebook.svg";
 import { FaUser } from "react-icons/fa";
 import { HiPhotograph } from "react-icons/hi";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Signup = () => {
+  const googleProvider = new GoogleAuthProvider();
+  const { providerLogIn } = useContext(AuthContext);
+
+  const handleGoogleSign = () => {
+    providerLogIn(googleProvider);
+  };
+
   return (
     <div>
       <div class="h-screen  flex-col justify-center items-center">
@@ -120,7 +129,10 @@ const Signup = () => {
         </div>
         <div className="divider w-9/12 md:w-1/3 mx-auto">OR</div>
         <div className="w-9/12 md:w-1/5 mx-auto">
-          <button class="block w-full btn btn-outline btn-primary mt-4 py-2 rounded-2xl text-white font-semibold mb-2">
+          <button
+            onClick={handleGoogleSign}
+            class="block w-full btn btn-outline btn-primary mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+          >
             <img src={googleLogo} className="w-6 h-6 inline mr-2" alt="" />
             <span>Signup with Google</span>
           </button>
