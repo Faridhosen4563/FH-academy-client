@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import googleLogo from "../../../images/google .svg";
-import githubLogo from "../../../images/github.svg";
-import facbookLogo from "../../../images/facebook.svg";
+import googleLogo from "../../images/google .svg";
+import githubLogo from "../../images/github.svg";
+import facbookLogo from "../../images/facebook.svg";
 
 const Login = () => {
   return (
-    <div class="h-screen flex-col justify-center items-center">
-      <div class="flex mt-20 justify-center items-center bg-white">
+    <div class="h-screen  flex-col justify-center items-center">
+      <div class="flex  mt-20 justify-center items-center bg-white">
         <form class="bg-white">
           <h1 class="text-gray-800 font-bold text-2xl mb-1 text-center">
             Please Login!!!
@@ -70,7 +70,9 @@ const Login = () => {
           </button>
           <span>
             Do not have account?Please{" "}
-            <Link className="text-blue-400">Signup</Link>{" "}
+            <Link className="text-blue-400" to="/signup">
+              Signup
+            </Link>{" "}
           </span>
         </form>
       </div>
