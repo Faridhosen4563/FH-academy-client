@@ -5,7 +5,7 @@ const SideMenu = ({ course }) => {
   return (
     <div>
       <li>
-        <Link>
+        <Link to={`/courses/${course.id}`}>
           <button className="btn btn-outline w-full">{course.title}</button>
         </Link>
       </li>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
   const { title, price, image, rating } = course;
@@ -16,6 +17,11 @@ const CourseCard = ({ course }) => {
         <div className="card-actions justify-end">
           <div className="badge badge-outline">{rating.rate}</div>
           <div className="badge badge-outline">{rating.count}</div>
+        </div>
+        <div>
+          <Link to={`/courses/${course.id}`}>
+            <button className="btn btn-outline my-2 w-full">See Details</button>
+          </Link>
         </div>
       </div>
     </div>
