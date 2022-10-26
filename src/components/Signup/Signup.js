@@ -12,11 +12,13 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import swal from "sweetalert";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [error, setError] = useState("");
 
-  const { providerLogIn, createUser } = useContext(AuthContext);
+  const { providerLogIn, createUser, updateInfo, verifyEmail } =
+    useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
@@ -79,6 +81,8 @@ const Signup = () => {
         console.log(user);
         form.reset();
         setError("");
+        handleProfileUpdate(name, photoUrl);
+        handleEmailVerification();
         swal({
           title: "Congratulation!",
           text: "Sign up successfully",
@@ -89,6 +93,24 @@ const Signup = () => {
         setError(error.message);
         console.error(error);
       });
+  };
+  const handleProfileUpdate = (name, photoUrl) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoUrl,
+    };
+    updateInfo(profile)
+      .then(() => {
+        toast.success("Profile Update.");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const handleEmailVerification = () => {
+    verifyEmail().then(() => {
+      toast.success("Please verify your email by your email address.");
+    });
   };
 
   return (

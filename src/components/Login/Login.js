@@ -9,6 +9,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -74,6 +75,7 @@ const Login = () => {
         console.log(user);
         setError("");
         form.reset();
+        toast.success("Log in successfully.");
         navigate(from, { replace: true });
       })
       .catch((error) => {
