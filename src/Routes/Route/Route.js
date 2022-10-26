@@ -18,15 +18,18 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "courses",
+        path: "/courses",
         element: <Courses></Courses>,
-        loader: () => fetch("http://localhost:5000/courses"),
+        loader: () =>
+          fetch("https://fh-academy-server-side.vercel.app/courses"),
       },
       {
-        path: "courses/:id",
+        path: "/courses/:id",
         element: <CourseDetails></CourseDetails>,
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/courses/${params.id}`);
+          return fetch(
+            `https://fh-academy-server-side.vercel.app/courses/${params.id}`
+          );
         },
       },
       {

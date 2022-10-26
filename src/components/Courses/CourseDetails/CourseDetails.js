@@ -30,7 +30,9 @@ const CourseDetails = () => {
             </div>
             <p>{description}</p>
             <div className="card-actions w-full mt-2">
-              <button className="btn btn-outline w-full">Buy Now</button>
+              <button className="btn btn-outline w-full">
+                Get premium access
+              </button>
             </div>
           </div>
         </div>
