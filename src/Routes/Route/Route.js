@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../../components/Blog/Blog";
+import CheckOut from "../../components/CheckOut/CheckOut";
 import CourseDetails from "../../components/Courses/CourseDetails/CourseDetails";
 import Courses from "../../components/Courses/Courses/Courses";
 import Errorpage from "../../components/Errorpage/Errorpage";
@@ -35,10 +36,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courseDetails/:id",
-        element: <div>This is new </div>,
+        element: <CheckOut></CheckOut>,
         loader: ({ params }) => {
           return fetch(
-            `https://fh-academy-server-side-faridhosen.vercel.app/courses/courseDetails/${params.id}`
+            `https://fh-academy-server-side-faridhosen.vercel.app/courseDetails/${params.id}`
           );
         },
       },

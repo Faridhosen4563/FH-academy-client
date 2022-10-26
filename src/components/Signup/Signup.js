@@ -11,6 +11,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
+import swal from "sweetalert";
 
 const Signup = () => {
   const [error, setError] = useState("");
@@ -78,6 +79,11 @@ const Signup = () => {
         console.log(user);
         form.reset();
         setError("");
+        swal({
+          title: "Congratulation!",
+          text: "Sign up successfully",
+          icon: "success",
+        });
       })
       .catch((error) => {
         setError(error.message);
@@ -86,7 +92,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="my-8">
       <div class="h-screen  flex-col justify-center items-center">
         <div class="flex  mt-20 justify-center items-center bg-white">
           <form onSubmit={handleSubmit} class="bg-white">
