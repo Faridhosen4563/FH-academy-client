@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import ReactTooltip from "react-tooltip";
 
 const NavBar = () => {
   const [theme, setTheme] = useState(true);

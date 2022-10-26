@@ -8,6 +8,7 @@ import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
 import Signup from "../../components/Signup/Signup";
 import Main from "../../Layout/Main";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +37,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courseDetails/:id",
-        element: <CheckOut></CheckOut>,
+        element: (
+          <PrivateRoute>
+            <CheckOut></CheckOut>
+          </PrivateRoute>
+        ),
         loader: ({ params }) => {
           return fetch(
             `https://fh-academy-server-side-faridhosen.vercel.app/courseDetails/${params.id}`

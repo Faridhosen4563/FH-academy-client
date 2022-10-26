@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleLogo from "../../images/google .svg";
 import githubLogo from "../../images/github.svg";
 import facbookLogo from "../../images/facebook.svg";
@@ -17,6 +17,8 @@ const Login = () => {
   const gitHubProvider = new GithubAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     providerLogIn(googleProvider)
@@ -24,7 +26,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -38,7 +40,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -52,7 +54,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -72,7 +74,7 @@ const Login = () => {
         console.log(user);
         setError("");
         form.reset();
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
