@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import ReactTooltip from "react-tooltip";
 
 const NavBar = () => {
   const [theme, setTheme] = useState(true);
@@ -105,7 +106,23 @@ const NavBar = () => {
             </Link>
           </>
         )}
-        <FaUser></FaUser>
+        <>
+          <div
+            className="tooltip  tooltip-bottom"
+            data-tip={user ? user?.displayName : "Please Login"}
+          >
+            {user?.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt=""
+                referrerPolicy="no-referrer"
+                className="rounded-full w-8 h-8"
+              ></img>
+            ) : (
+              <FaUser></FaUser>
+            )}
+          </div>
+        </>
       </div>
     </div>
   );
