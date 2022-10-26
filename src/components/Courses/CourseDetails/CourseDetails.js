@@ -1,12 +1,12 @@
 import React, { createRef } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Pdf from "react-to-pdf";
 
 const ref = createRef();
 
 const CourseDetails = () => {
   const courseDetails = useLoaderData();
-  const { title, price, image, rating, description } = courseDetails;
+  const { title, price, image, rating, description, id } = courseDetails;
   return (
     <div>
       <Pdf targetRef={ref} filename="course-details.pdf">
@@ -30,9 +30,11 @@ const CourseDetails = () => {
             </div>
             <p>{description}</p>
             <div className="card-actions w-full mt-2">
-              <button className="btn btn-outline w-full">
-                Get premium access
-              </button>
+              <Link className="w-full" to={`/courseDetails/${id}`}>
+                <button className="btn btn-outline w-full">
+                  Get premium access
+                </button>
+              </Link>
             </div>
           </div>
         </div>

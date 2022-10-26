@@ -19,7 +19,7 @@ const CourseCard = ({ course }) => {
           <div className="badge badge-outline">{rating.count}</div>
         </div>
         <div>
-          <Link to={`/courses/${course.id}`}>
+          <Link to={`/courses/${title}`}>
             <button className="btn btn-outline my-2 w-full">See Details</button>
           </Link>
         </div>

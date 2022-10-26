@@ -43,10 +43,10 @@ const NavBar = () => {
               <Link to="/courses">Courses</Link>
             </li>
             <li>
-              <Link>FAQ</Link>
+              <Link to="/faq">FAQ</Link>
             </li>
             <li>
-              <Link>Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
           </ul>
         </div>
@@ -64,10 +64,10 @@ const NavBar = () => {
             <Link to="/courses">Courses</Link>
           </li>
           <li>
-            <Link>FAQ</Link>
+            <Link to="/faq">FAQ</Link>
           </li>
           <li>
-            <Link>Blog</Link>
+            <Link to="/blog">Blog</Link>
           </li>
           <li>
             {theme ? (
