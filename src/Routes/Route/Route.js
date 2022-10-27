@@ -4,6 +4,7 @@ import CheckOut from "../../components/CheckOut/CheckOut";
 import CourseDetails from "../../components/Courses/CourseDetails/CourseDetails";
 import Courses from "../../components/Courses/Courses/Courses";
 import Errorpage from "../../components/Errorpage/Errorpage";
+import FAQ from "../../components/FAQ/FAQ";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
 import Signup from "../../components/Signup/Signup";
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             `https://fh-academy-server-side-faridhosen.vercel.app/courseDetails/${params.id}`
           );
         },
+      },
+      {
+        path: "/faq",
+        element: <FAQ></FAQ>,
       },
       {
         path: "/blog",

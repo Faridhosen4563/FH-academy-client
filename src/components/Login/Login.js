@@ -13,7 +13,8 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { login, providerLogIn } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState(null);
+  const { login, providerLogIn, passwordReset } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
@@ -83,6 +84,24 @@ const Login = () => {
         console.error(error);
       });
   };
+
+  const handleEmail = (event) => {
+    const email = event.target.value;
+    setUserEmail(email);
+  };
+
+  const handleResetPassword = () => {
+    passwordReset(userEmail)
+      .then(() => {
+        setError("");
+        toast.success("Password reset email sent!");
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.error(error);
+      });
+  };
+
   return (
     <div class="h-screen  flex-col justify-center items-center">
       <div class="flex  mt-20 justify-center items-center bg-white">
@@ -109,6 +128,7 @@ const Login = () => {
               />
             </svg>
             <input
+              onBlur={handleEmail}
               class="pl-2 outline-none border-none"
               type="email"
               name="email"
@@ -137,7 +157,10 @@ const Login = () => {
               placeholder="Password"
             />
           </div>
-          <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">
+          <span
+            onClick={handleResetPassword}
+            class="text-sm ml-2 hover:text-blue-500 cursor-pointer"
+          >
             Forgot Password ?
           </span>
           <span class="block my-2 text-sm ml-2 text-red-500">{error}</span>

@@ -1,10 +1,12 @@
 import { useLoaderData } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const CheckOut = () => {
   const countries = ["Bangladesh", "China", "Russia", "UK"];
   const [menu, setMenu] = useState(false);
   const [country, setCountry] = useState("United States");
+  const { user } = useContext(AuthContext);
 
   const changeText = (e) => {
     setMenu(false);
@@ -25,6 +27,7 @@ const CheckOut = () => {
                 className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                 type="text"
                 placeholder="Name"
+                defaultValue={user?.displayName}
               />
             </div>
             <div className="mt-8">
@@ -32,6 +35,7 @@ const CheckOut = () => {
                 className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                 type="email"
                 placeholder="Email"
+                defaultValue={user?.email}
               />
             </div>
 
