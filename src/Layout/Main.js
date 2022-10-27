@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar/NavBar";
 
 const Main = () => {
   return (
-    <div>
+    <div className="w-full">
       <NavBar></NavBar>
       <Outlet></Outlet>
       <Footer></Footer>
