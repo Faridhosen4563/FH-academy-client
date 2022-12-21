@@ -1,10 +1,26 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+
 import CourseCard from "./CourseCard";
 import SideMenu from "./SideMenu";
 
 const Courses = () => {
-  const courses = useLoaderData();
+  const [courses, setCourses] = useState([]);
+  const [spinner, setSpinner] = useState(true);
+  useEffect(() => {
+    fetch("https://fh-academy-server-side.vercel.app/courses")
+      .then((res) => res.json())
+      .then((data) => {
+        setSpinner(false);
+        setCourses(data);
+      });
+  }, []);
+
+  if (spinner) {
+    return <progress className="progress w-full"></progress>;
+  }
+
   return (
     <div>
       <div className="my-12 flex flex-col md:flex-row">
